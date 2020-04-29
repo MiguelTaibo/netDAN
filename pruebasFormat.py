@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-import shutil
+import shutil, os
 
 dataroot = "/mnt/pgth04b/Data_Miguel/AutoEncoders/datasets/AFFECTNET"
 
@@ -24,10 +24,9 @@ for landmarks in data['facial_landmarks']:
         pass
 
 for filename in data['subDirectory_filePath']:
-    try:
-        shutil.copy(dataroot+'/'+filename,'datasets/'+filename)
-    except:
-        print(dataroot+'/'+filename, "  ", 'datasets/'+filename)
+    n = filename.find('/')
+    os.mkdir('datasets/'+filename[0:n])
+    shutil.copy(dataroot+'/'+filename,'datasets/'+filename)
 
 Landmark = np.array(Landmark)
 #import pdb
