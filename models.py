@@ -1,5 +1,6 @@
 from layersDAN import AffineTransformLayer, TransformParamsLayer, LandmarkImageLayer, LandmarkTransformLayer
 import tensorflow as tf
+from utils import cyclic_learning_rate
 
 def augment(images, labels, labels_em):
     brght_imgs = tf.image.random_brightness(images, max_delta=0.3)
