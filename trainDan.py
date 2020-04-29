@@ -8,7 +8,7 @@ import argparse
 import numpy as np
 import tensorflow as tf
 
-from netDan.netDAN import emoDAN
+from models import emoDAN
 
 import os
 
@@ -23,7 +23,7 @@ if __name__ == '__main__':
     parser.add_argument('--validationSetFile', default='AffectnetVal_7.npz')
     parser.add_argument('--imageHeight', default=224)
     parser.add_argument('--imageWidth', default=224)
-    parser.add_argument('--valSetSize', default=200)
+    parser.add_argument('--valSetSize', type=int, default=200)
     parser.add_argument('--batchSize', default=50)
     parser.add_argument('--epochs', default=40)
     parser.add_argument('--pretrainedModel', default='./Model0/Model')
@@ -47,7 +47,7 @@ if __name__ == '__main__':
     testIdxsTrainSet = range(len(Xvalid))
     testIdxsValidSet = range(len(Xvalid))
 
-    meanImg = trainSet['MeanShape']
+    #meanImg = trainSet['MeanShape']
     initLandmarks = trainSet['Landmark'][0].reshape((1, 136))
 
     with tf.Session() as sess:

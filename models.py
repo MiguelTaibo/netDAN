@@ -1,4 +1,4 @@
-from netDan.layersDAN import AffineTransformLayer, TransformParamsLayer, LandmarkImageLayer, LandmarkTransformLayer
+from layersDAN import AffineTransformLayer, TransformParamsLayer, LandmarkImageLayer, LandmarkTransformLayer
 import tensorflow as tf
 
 def augment(images, labels, labels_em):
@@ -25,7 +25,7 @@ def NormRmse(GroudTruth, Prediction, n_landmark=68):
     return loss / norm
 
 
-def emoDAN(MeanShapeNumpy, batch_size, nb_emotions=7, lr_stage1=0.001, lr_stage2=0.001, n_landmark=68, IMGSIZE=224):
+def emoDAN(MeanShapeNumpy, batch_size, nb_emotions=2, lr_stage1=0.001, lr_stage2=0.001, n_landmark=68, IMGSIZE=224):
     InputImage = tf.placeholder(tf.float32, [None, IMGSIZE, IMGSIZE, 1])
     GroundTruth = tf.placeholder(tf.float32, [None, n_landmark * 2])
     Emotion_Labels = tf.placeholder(tf.int32, [None, ])
