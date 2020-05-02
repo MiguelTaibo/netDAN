@@ -59,8 +59,7 @@ if __name__ == "__main__":
         # we must check it this is a problem, and if it is correct it
 
         ### EMOCIONES
-        emocion = np.zeros(nb_emotions)
-        emocion[int(row['expression'])-1]=1
+        emocion = int(row['expression'])-1
         Emotions.append(emocion)
 
 
