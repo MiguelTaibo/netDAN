@@ -9,7 +9,7 @@ if __name__ == "__main__":
     #TODO archivo arguments
     quiet = False
     dataroot = "datasets/"
-    train_ouput = "result/AffectnetTrain_7.npz"
+    train_ouput = "results/AffectnetTrain_7.npz"
     validation_output = "results/AffectnetVal_7.npz"
     nb_emotions = 2
     proporcion_train_val = 0.1
@@ -40,8 +40,9 @@ if __name__ == "__main__":
         ### IMAGENES
         img_ori = Image.open(dataroot+row['subDirectory_filePath'])
         width, height = img_ori.size
+        img_ori = img_ori.convert('1')
         img = img_ori.resize((224,224))
-        img = np.asarray(img)
+        img = np.asarray(img).reshape((224,224,1))
         Images.append(img)
 
 
@@ -54,8 +55,7 @@ if __name__ == "__main__":
         # we must check it this is a problem, and if it is correct it
 
         ### EMOCIONES
-        emocion = np.zeros(nb_emotions)
-        emocion[int(row['expression'])-1]=1
+        emocion = int(row['expression'])-1
         Emotions.append(emocion)
 
 
