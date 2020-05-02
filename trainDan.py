@@ -21,10 +21,10 @@ if __name__ == '__main__':
     parser.add_argument('stage', type=int)
     parser.add_argument('--trainSetFile', default='AffectnetTrain_7.npz')
     parser.add_argument('--validationSetFile', default='AffectnetVal_7.npz')
-    parser.add_argument('--imageHeight', default=224)
-    parser.add_argument('--imageWidth', default=224)
+    parser.add_argument('--imageHeight', type=int, default=224)
+    parser.add_argument('--imageWidth', type=int, default=224)
     parser.add_argument('--valSetSize', type=int, default=200)
-    parser.add_argument('--batchSize', default=50)
+    parser.add_argument('--batchSize', type=int, default=50)
     parser.add_argument('--epochs', default=40)
     parser.add_argument('--pretrainedModel', default='./Model0/Model')
     parser.add_argument('--outPath', default='./Model2/Model2')
@@ -77,6 +77,8 @@ if __name__ == '__main__':
 
                 if args.stage == 1 or args.stage == 0:
                     # Training landmarks
+                    print(Xtrain[RandomIdx].shape, Ytrain[RandomIdx].shape, Ytrain_em[RandomIdx].shape)
+
                     sess.run(
                         emotionaldan['S1_Optimizer'],
                         feed_dict={emotionaldan['InputImage']: Xtrain[RandomIdx],
